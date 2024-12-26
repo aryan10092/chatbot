@@ -1,0 +1,21 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300;400;500;600;800&family=Work+Sans&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+
+  html {
+    @apply bg-[#05101c] font-roboto;
+  }
+  body {
+    @apply m-0 p-0;
+  }
+}
+
+
+.scrollbar{
+  scrollbar-width:thin;
+  scrollbar-color: #888 #f1f1f1;
+}
