@@ -9,7 +9,7 @@ import { UserProvider } from './context/Userprovider.jsx';
 import { createTheme, ThemeProvider } from '@mui/material';
 import { Chatprovider } from './context/Chatprovide.jsx';
 import { BrowserRouter } from 'react-router-dom';
-export const server = "https://chathub-2.onrender.com";
+export const server = "https://chatbot-server-biws.onrender.com";
 const theme = createTheme({
   typography: {
     fontFamily: "Roboto Slab,serif",
