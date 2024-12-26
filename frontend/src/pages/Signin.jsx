@@ -54,7 +54,7 @@ const handleSignup = async (e) => {
         onSubmit={handleSignup}
           className='bg-white p-6 rounded shadow-md w-full md:w-[500px]'>
         <Heading  label={"Sign in"}/>
-        <Subheading label={"Eneter your information to access your account"}/>
+        <Subheading label={"Enter your information to access your account"}/>
         
         <Inputbox  onchange={(e)=>{
             setemail(e.target.value)
