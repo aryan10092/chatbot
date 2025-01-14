@@ -8,6 +8,7 @@ import { Bottomwarning } from '../components/Bottomwarning'
 import { server } from '../main'
 import toast, { Toaster } from "react-hot-toast";
 import { Loadingspinner } from '../components/Loading'
+import bg from '../assets/download.jpg'
 
 const Signin = () => {
 
@@ -45,39 +46,46 @@ const handleSignup = async (e) => {
         setbuttload(false)
     }
 };
-
+useEffect(()=>{
+document.body.className="bg-cover"
+document.body.style.backgroundImage=`url(${bg})`
+return()=>{
+document.body.className=""
+document.body.style.backgroundImage=""
+}
+},[])
 
 
   return (
-    <div className='flex justify-center items-center h-screen'>
+    <div className='flex justify-center items-center h-screen text-white'>
         <form 
         onSubmit={handleSignup}
-          className='bg-white p-6 rounded shadow-md w-full md:w-[500px]'>
-        <Heading  label={"Sign in"}/>
+          className='backdrop-blur-[10px] p-6 rounded shadow-md w-full md:w-[500px]'>
+        <Heading  label={"Login"}/>
         <Subheading label={"Enter your information to access your account"}/>
         
         <Inputbox  onchange={(e)=>{
             setemail(e.target.value)
         }}
-        placeholder="Email"
+        placeholder="email"
         label={"Email"}
 
         />
         <Inputbox  onchange={(e)=>{
             setpassword(e.target.value)
         }}
-        placeholder="Password"
+        placeholder="password"
         label={"Password"}
 
         />
         <button
         type='submit'
-        className='w-full text-white bg-gray-800 hover:bg-gray-950 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-md px-5 py-2.5 me-2 mb-2 mt-3 '
+        className='w-full p-[3px] relative mb-2 mt-3 '>
+    <div className='absolute inset-0 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-lg'/>
+        <div className='px-8 py-2 bg-black rounded-[6px] relative group transition duration-200 text-white hover:bg-transparent'>
+    {buttload?<Loadingspinner/>:"Login"}
 
-        
-    >{buttload?<Loadingspinner/>:"Signin"}
-
-
+    </div>
 
         </button>
        
@@ -85,7 +93,7 @@ const handleSignup = async (e) => {
 
 <Bottomwarning
 label={"Don't have an account"}
-text={"Sign up"}
+text={"Signup"}
 to={"/signup"}
 
 >
