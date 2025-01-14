@@ -8,7 +8,7 @@ import { Bottomwarning } from '../components/Bottomwarning'
 import { server } from '../main'
 import toast, { Toaster } from "react-hot-toast";
 import { Loadingspinner } from '../components/Loading'
-
+import bg from '../assets/download.jpg'
 const Signup = () => {
 
     const[name,setname]=useState("")
@@ -42,58 +42,72 @@ const handleSignup = async (e) => {
     } catch (error) {
         toast.error(error.response.data.message);
         console.error('Signup failed:', error.response?.data || error.message);
-        alert('Signup failed. Please try again.');
+        // alert('Signup failed. Please try again.');
         setbuttload(false)
     }
 };
 
-
+useEffect(()=>{
+    document.body.className="bg-cover"
+    document.body.style.backgroundImage=`url(${bg})`
+    return()=>{
+        document.body.className=""
+        document.body.style.backgroundImage=""
+    }
+},[])
 
   return (
-    <div className='flex justify-center items-center h-screen'>
+    <div className='flex justify-center items-center h-screen text-white'>
         <Toaster position="top-center" reverseOrder={false} />
         <form 
         onSubmit={handleSignup}
-          className='bg-white p-6 rounded shadow-md w-full md:w-[500px]'>
+          className='backdrop-blur-[10px] p-6 rounded shadow-md w-full md:w-[500px]'>
         <Heading  label={"Sign up"}/>
-        <Subheading label={"Enter your information "}/>
+        <Subheading label={"Enter your information"}/>
         <Inputbox  onchange={(e)=>{
             setname(e.target.value)
         }}
-        placeholder="Name"
-        label={"Name"}
+        placeholder="username"
+        label={"Username"}
 
         />
         <Inputbox  onchange={(e)=>{
             setemail(e.target.value)
         }}
-        placeholder="Email"
-        label={"emmm"}
+        placeholder="email"
+        label={"Email"}
 
         />
         <Inputbox  onchange={(e)=>{
             setpassword(e.target.value)
         }}
-        placeholder="Password"
-        label={"password"}
+        placeholder="password"
+        label={"Password"}
 
         />
-        <button
+        {/* <button
         type='submit'
-        className='w-full text-white bg-gray-800 hover:bg-gray-950 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-md px-5 py-2.5 me-2 mb-2 mt-3 '
+        className='w-full text-white  focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-md px-5 py-2.5 me-2 mb-2 mt-3 '
 
         
+    > */}
+    <button
+    type='submit'
+className='p-[3px] w-full relative mt-3 mb-2'
     >
+        <div className='absolute  inset-0 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-lg'/>
+        <div className='px-5 py-2.5  bg-black rounded-[6px] relative group transition duration-200 text-white hover:bg-transparent'>
 {buttload?<Loadingspinner/>:"Sign up"}
-
+</div>
 
         </button>
-       
+
+      
 
 
 <Bottomwarning
-label={"Already have an account"}
-text={"Sign in"}
+label={"Already have an account "}
+text={" Login"}
 to={"/signin"}
 
 >
